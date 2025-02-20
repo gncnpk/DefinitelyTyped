@@ -1150,7 +1150,7 @@ declare namespace Xrm {
          * Gets an attribute matching attributeName.
          * @param T An Attribute type.
          * @param attributeNameOrIndex Name of the attribute.
-         * @returns The attribute.
+         * @returns The attribute or null if attribute does not exist.
          */
         getAttribute<T extends Attributes.Attribute>(attributeNameOrIndex: string | number): T | null;
 
@@ -1164,7 +1164,7 @@ declare namespace Xrm {
         /**
          * Gets a collection of attributes using a delegate function or gets all attributes if delegateFunction is not provided.
          * @param delegateFunction A matching delegate function
-         * @returns An collection of attributes.
+         * @returns An collection of attributes or null if there are no attributes.
          * @see {@link https://learn.microsoft.com/en-us/power-apps/developer/model-driven-apps/clientapi/reference/collections External Link: Collections (Client API reference)}
          */
         getAttribute(
@@ -1327,7 +1327,7 @@ declare namespace Xrm {
          * @see {@link https://learn.microsoft.com/en-us/power-apps/developer/model-driven-apps/clientapi/reference/formcontext-ui-quickforms ExternalLink: formContext.ui.quickForms (Client API reference)}
          * @see {@link https://learn.microsoft.com/en-us/power-apps/developer/model-driven-apps/clientapi/reference/formcontext-ui External Link: formContext.ui (Client API reference)}
          */
-        quickForms: Collection.ItemCollection<Controls.QuickFormControl>;
+        quickForms: Collection.ItemCollection<Controls.QuickFormControl> | null;
     }
 
     /**
@@ -1843,9 +1843,9 @@ declare namespace Xrm {
             /**
              * Gets the item given by key or index.
              * @param itemNameOrNumber The item name or item number to get.
-             * @returns The T matching the key itemName or the T in the itemNumber-th place.
+             * @returns The T matching the key itemName, the T in the itemNumber-th place or null if there is no item.
              */
-            get<TSubType extends T>(itemNameOrNumber: string | number): TSubType;
+            get<TSubType extends T>(itemNameOrNumber: string | number): TSubType | null;
 
             /**
              * Gets the item given by key or index.
@@ -2591,7 +2591,7 @@ declare namespace Xrm {
         /**
          * Interface for an Entity attribute.
          */
-        interface Attribute<T = any> {
+        interface Attribute<T = unknown> {
             /**
              * Adds a handler to be called when the attribute's value is changed.
              * @param handler The function reference.
