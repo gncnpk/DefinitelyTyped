@@ -190,7 +190,7 @@ if (attribute !== null) {
     attribute.setRequiredLevel(requirementLevel);
     attribute.setRequiredLevel(requirementLevelString); // Works if the string is a const
 
-    const isMulitselect = attribute.getAttributeType() === "multiselectoptionset";
+    //const isMultiSelect = attribute.getAttributeType() === "multiselectoptionset";
 }
 /// Demonstrate v8.2 quick form controls
 
