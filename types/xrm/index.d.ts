@@ -3459,7 +3459,7 @@ declare namespace Xrm {
              * @returns The attribute.
              */
             getAttribute(): Attributes.StringAttribute;
-            
+
             /**
              * Gets the control type.
              * @returns The string "standard".
