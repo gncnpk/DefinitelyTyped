@@ -1152,14 +1152,7 @@ declare namespace Xrm {
          * @param attributeNameOrIndex Name of the attribute.
          * @returns The attribute or null if attribute does not exist.
          */
-        getAttribute<T extends Attributes.Attribute>(attributeNameOrIndex: string | number): T | null;
-
-        /**
-         * Gets an attribute by name or index.
-         * @param attributeNameOrIndex Name of the attribute or the attribute index.
-         * @returns The attribute or null if attribute does not exist.
-         */
-        getAttribute(attributeNameOrIndex: string | number): Attributes.Attribute | null;
+        getAttribute<T extends Attributes.Attribute = Attributes.Attribute>(attributeNameOrIndex: string | number): T | null;
 
         /**
          * Gets a collection of attributes using a delegate function or gets all attributes if delegateFunction is not provided.
