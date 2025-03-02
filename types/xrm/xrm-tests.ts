@@ -696,3 +696,20 @@ function testAttributeTypeReturn(formContext: Xrm.FormContext) {
         let value = attribute.getValue();
     }
 }
+
+function testControlTypeReturn(formContext: Xrm.FormContext) {
+    let attribute: null | Xrm.Attributes.LookupAttribute = formContext.getAttribute("name");
+    if (attribute === null) {
+        return;
+    }
+    let attributeControl = attribute.controls.get(0);
+    if (attributeControl === null) {
+        return;
+    }
+    // $ExpectType "lookup"
+    let attributeControlType = attributeControl.getControlType();
+    // @ts-expect-error
+    if (attributeControlType === "boolean") {
+        let value = attribute.getValue();
+    }
+}
