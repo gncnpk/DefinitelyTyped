@@ -6051,7 +6051,51 @@ declare namespace Xrm {
          */
         offline: WebApiOffline;
     }
-
+    /** 
+     * Interface for the Execute request
+     * @see {@link https://learn.microsoft.com/en-us/power-apps/developer/model-driven-apps/clientapi/reference/xrm-webapi/online/execute#requestgetmetadata-method External Link: request.getMetadata (Client API reference)}
+     */
+    interface ExecuteRequestGetMetadata {
+        /**
+         * The name of the bound parameter to pass to the action or function.
+         */
+        boundParameter?: string | null;
+        /**
+         * The name of the action, function, or CRUD request to execute.
+         */
+        operationName?: string;
+        /**
+         * The type of operation you are executing. Specify one of the following values:
+         * 0: Action
+         * 1: Function
+         * 2: CRUD
+         */
+        operationType?: XrmEnum.OperationType;
+        /**
+         * The metadata for parameter types. The object has the following attributes:
+         * enumProperties: (Optional) Object. The metadata for enum types. The object has two string attributes: name and value.
+         * structuralProperty: Number. The category of the parameter type. Specify one of the following values:
+         * 0: Unknown
+         * 1: PrimitiveType
+         * 2: ComplexType
+         * 3: EnumerationType
+         * 4: Collection
+         * 5: EntityType
+         * typeName: String. The fully qualified name of the parameter type.
+         */
+        parameterTypes: {
+            [key: string]: {
+                enumProperties?: { name: string; value: string } | undefined;
+                structuralProperty: XrmEnum.StructuralProperty;
+                typeName: string;
+            };
+        };
+    }
+    interface ExecuteRequest {
+        etn?: string;
+        id?: string;
+        getMetadata(): ExecuteRequestGetMetadata;
+    }
     /**
      * Interface for the {@link Xrm.WebApi.online} API
      * Execute and ExecuteMultiple are only available when online, not offline.
@@ -6083,7 +6127,7 @@ declare namespace Xrm {
          *       * 5: EntityType
          *   - typeName: String. The fully qualified name of the parameter type.
          */
-        execute(request: any): Async.PromiseLike<ExecuteResponse>;
+        execute(request: ExecuteRequest): Async.PromiseLike<ExecuteResponse>;
 
         /**
          * Execute a collection of action, function, or CRUD operations.
@@ -6097,7 +6141,7 @@ declare namespace Xrm {
          *        * In this case, all the request objects specified in the change set will get executed in a
          *        transaction.
          */
-        executeMultiple(request: any[]): Async.PromiseLike<ExecuteResponse[]>;
+        executeMultiple(request: ExecuteRequest[]): Async.PromiseLike<ExecuteResponse[]>;
     }
 
     /**
@@ -6583,6 +6627,29 @@ declare namespace XrmEnum {
         Collapsed = "collapsed",
     }
 
+    /**
+     * Constant Enum: Operation Types for {@link Xrm.ExecuteRequest}.
+     * @see {@link Xrm.ExecuteRequest}
+     */
+    const enum OperationType {
+        Action,
+        Function,
+        CRUD
+    }
+
+    /**
+     * Constant Enum: Structural Properties for {@link Xrm.ExecuteRequest ExecuteRequest}.
+     * @see {@link Xrm.ExecuteRequest}
+     */
+    const enum StructuralProperty {
+        Unknown,
+        PrimitiveType,
+        ComplexType,
+        EnumerationType,
+        Collection,
+        EntityType,
+    }
+    
     /**
      * Constant Enum: {@link Xrm.Entity.save Entity} Save Modes
      * @see {@link Xrm.EntitySaveMode}
