@@ -205,7 +205,7 @@ if (quickForm !== null && quickForm !== undefined) {
     quickForm.refresh();
 }
 // Get standard control
-const ctrl = formContext.getControl<Xrm.Controls.StandardControl>("controlName");
+const ctrl = formContext.getControl("controlName");
 if (ctrl !== null) {
     ctrl.getControlType();
     ctrl.getName();

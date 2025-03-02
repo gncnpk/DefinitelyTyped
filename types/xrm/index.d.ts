@@ -1170,14 +1170,7 @@ declare namespace Xrm {
          * @param controlNameOrIndex Name of the control or the control index.
          * @returns The control.
          */
-        getControl<T extends Controls.Control>(controlNameOrIndex: string | number): T | null;
-
-        /**
-         * Gets a control by name or index.
-         * @param controlNameOrIndex  Name of the control or the control index.
-         * @returns The control.
-         */
-        getControl(controlNameOrIndex: string | number): Controls.Control | null;
+        getControl<T extends Controls.SpecificControls = Controls.SpecificControls>(controlNameOrIndex: string | number): T | null;
 
         /**
          * Gets a collection of controls using a delegate function or gets all controls if delegateFunction is not provided.
@@ -1186,8 +1179,8 @@ declare namespace Xrm {
          * @see {@link https://learn.microsoft.com/en-us/power-apps/developer/model-driven-apps/clientapi/reference/collections External Link: Collections (Client API reference)}
          */
         getControl(
-            delegateFunction?: Collection.MatchingDelegate<Controls.Control>,
-        ): Collection.ItemCollection<Controls.Control> | null;
+            delegateFunction?: Collection.MatchingDelegate<Controls.SpecificControls>,
+        ): Collection.ItemCollection<Controls.SpecificControls> | null;
     }
 
     /**
@@ -3052,7 +3045,7 @@ declare namespace Xrm {
             | "kbsearch"
             | "timelinewall"
             | "quickform";
-
+        type SpecificControls =  BooleanControl |KbSearchControl | MultiSelectOptionSetControl | DateControl | GridControl | IframeControl | LookupControl | NumberControl | OptionSetControl | QuickFormControl| StringControl | TimelineWall;
         /**
          * Interface for UI elements with labels.
          */
@@ -3927,7 +3920,7 @@ declare namespace Xrm {
         /**
          * Interface for a knowledge base search control
          */
-        interface KbSearchControl extends Control {
+        interface KbSearchControl extends Control, UiCanSetVisibleElement {
             /**
              * Adds an event handler to the PostSearch event.
              * @see {@link https://learn.microsoft.com/en-us/power-apps/developer/model-driven-apps/clientapi/reference/controls/addonpostsearch External Link: addOnPostSearch (Client API reference)}
@@ -4196,7 +4189,7 @@ declare namespace Xrm {
          * Interface for a Timeline control.
          * @see {@link Xrm.Controls.Control}
          */
-        interface TimelineWall extends Control {
+        interface TimelineWall extends Control, UiCanSetVisibleElement {
             /**
              * Refreshes the data displayed in a timelinewall and timer control.
              */
