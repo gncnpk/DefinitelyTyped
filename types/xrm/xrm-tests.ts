@@ -685,11 +685,13 @@ function ActionOnPostsave(context: Xrm.Events.PostSaveEventContext) {
 }
 
 function testAttributeTypeReturn(formContext: Xrm.FormContext) {
-    let attribute = formContext.getAttribute("name");
+    let attribute: null | Xrm.Attributes.StringAttribute = formContext.getAttribute("name");
     if (attribute === null) {
         return;
     }
+    // $ExpectType "string"
     let attributeType = attribute.getAttributeType();
+    // @ts-expect-error
     if (attributeType === "boolean") {
         let value = attribute.getValue();
     }

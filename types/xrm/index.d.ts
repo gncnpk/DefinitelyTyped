@@ -1152,7 +1152,7 @@ declare namespace Xrm {
          * @param attributeNameOrIndex Name of the attribute.
          * @returns The attribute or null if attribute does not exist.
          */
-        getAttribute<T extends Attributes.Attribute = Attributes.Attribute>(attributeNameOrIndex: string | number): T | null;
+        getAttribute<T extends Attributes.SpecificAttributeTypes = Attributes.SpecificAttributeTypes>(attributeNameOrIndex: string | number): T | null;
 
         /**
          * Gets a collection of attributes using a delegate function or gets all attributes if delegateFunction is not provided.
@@ -1161,8 +1161,8 @@ declare namespace Xrm {
          * @see {@link https://learn.microsoft.com/en-us/power-apps/developer/model-driven-apps/clientapi/reference/collections External Link: Collections (Client API reference)}
          */
         getAttribute(
-            delegateFunction?: Collection.MatchingDelegate<Attributes.Attribute>,
-        ): Collection.ItemCollection<Attributes.Attribute> | null;
+            delegateFunction?: Collection.MatchingDelegate<Attributes.SpecificAttributeTypes>,
+        ): Collection.ItemCollection<Attributes.SpecificAttributeTypes> | null;
 
         /**
          * Gets a control by name or index.
@@ -1958,7 +1958,7 @@ declare namespace Xrm {
          * Control type for Xrm.Page.ui.QuickForm.getControlType().
          * @deprecated Use {@link Xrm.Controls.ControlQuickFormType} instead.
          */
-        type ControlQuickFormType = Controls.ControlQuickFormType;
+        type ControlQuickFormType = "quickform";
 
         /**
          * Control types for Xrm.Page.Control.getControlType().
@@ -3035,10 +3035,6 @@ declare namespace Xrm {
      * @see {@link https://learn.microsoft.com/en-us/power-apps/developer/model-driven-apps/clientapi/reference/collections External Link: Collections (Client API reference)}
      */
     namespace Controls {
-        /**
-         * Control type for formContext.ui.quickForms.getControlType().
-         */
-        type ControlQuickFormType = "quickform";
 
         /**
          * Control types for {@link Controls.Control.getControlType Controls.Control.getControlType()}.
@@ -3055,7 +3051,7 @@ declare namespace Xrm {
             | "timercontrol"
             | "kbsearch"
             | "timelinewall"
-            | ControlQuickFormType;
+            | "quickform";
 
         /**
          * Interface for UI elements with labels.
@@ -3538,6 +3534,12 @@ declare namespace Xrm {
             getAttribute(): Attributes.LookupAttribute;
 
             /**
+             * Gets the control type.
+             * @returns The string "lookup".
+             */
+            getControlType(): "lookup";
+
+            /**
              * Gets the unique identifier of the default view.
              * @returns The default view, in Guid format.
              * @example Example return: "{00000000-0000-0000-0000-000000000000}"
@@ -3595,6 +3597,12 @@ declare namespace Xrm {
              * Clears all options.
              */
             clearOptions(): void;
+
+            /**
+             * Gets the control type.
+             * @returns The string "optionset".
+             */
+            getControlType(): "optionset";
 
             /**
              * Gets the control's bound attribute.
@@ -3661,6 +3669,12 @@ declare namespace Xrm {
              */
             getContextType(): XrmEnum.GridControlContext;
 
+            /**
+             * Gets the control type.
+             * @returns The string "subgrid".
+             */
+            getControlType(): "subgrid";
+            
             /**
              * Gets the logical name of the table data displayed in the grid.
              * @returns The logical name of the table data displayed in the grid.
@@ -3902,6 +3916,12 @@ declare namespace Xrm {
              * @remarks Unavailable for Microsoft Dynamics CRM for tablets.
              */
             getInitialUrl(): string;
+            
+            /**
+             * Gets the control type.
+             * @returns The string "iframe".
+             */
+            getControlType(): "iframe";
         }
 
         /**
@@ -4117,7 +4137,7 @@ declare namespace Xrm {
              * Gets the controls type.
              * @returns Returns a string value ("quickform") that categorizes quick view controls.
              */
-            getControlType(): ControlQuickFormType;
+            getControlType(): "quickform";
 
             /**
              * Gets a reference to the Section parent of the control.
