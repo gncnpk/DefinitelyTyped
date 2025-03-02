@@ -1453,7 +1453,7 @@ declare namespace Xrm {
          * @see {@link https://learn.microsoft.com/en-us/dynamics365/customerengagement/on-premises/customize/actions External Link: Actions overview}
          * @see {@link https://learn.microsoft.com/en-us/dynamics365/customerengagement/on-premises/developer/create-own-actions External Link: Create your own actions}
          */
-        invokeProcessAction<T = any>(name: string, parameters: Collection.Dictionary<any>): Async.PromiseLike<T>;
+        invokeProcessAction<T = unknown>(name: string, parameters: Collection.Dictionary<any>): Async.PromiseLike<T>;
 
         /**
          * Opens a lookup control to select one or more items.
@@ -6087,7 +6087,7 @@ declare namespace Xrm {
          * @returns On success, returns a promise containing a JSON object with the retrieved attributes and their values.
          * @see {@link https://learn.microsoft.com/en-us/power-apps/developer/model-driven-apps/clientapi/reference/xrm-webapi/retrieverecord External Link: retrieveRecord (Client API reference)}
          */
-        retrieveRecord<T = any>(entityLogicalName: string, id: string, options?: string): Async.PromiseLike<T>;
+        retrieveRecord<T = unknown>(entityLogicalName: string, id: string, options?: string): Async.PromiseLike<T>;
 
         /**
          * Retrieves a collection of entity records.
@@ -6105,7 +6105,7 @@ declare namespace Xrm {
          * @returns On success, returns a promise object containing the attributes specified earlier in the description of the successCallback parameter.
          * @see {@link https://learn.microsoft.com/en-us/power-apps/developer/model-driven-apps/clientapi/reference/xrm-webapi/retrievemultiplerecords External Link: retrieveMultipleRecords (Client API reference)}
          */
-        retrieveMultipleRecords<T = any>(
+        retrieveMultipleRecords<T = unknown>(
             entityLogicalName: string,
             options?: string,
             maxPageSize?: number,
@@ -6141,7 +6141,7 @@ declare namespace Xrm {
     /**
      * Interface for the WebAPI RetrieveMultiple request response
      */
-    interface RetrieveMultipleResult<T = any> {
+    interface RetrieveMultipleResult<T = unknown> {
         /**
          * An array of JSON objects, where each object represents the retrieved entity record containing attributes and their values as key: value pairs. The Id of the entity record is retrieved by default.
          */
