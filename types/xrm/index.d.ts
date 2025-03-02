@@ -2739,6 +2739,12 @@ declare namespace Xrm {
             getFormat(): IntegerAttributeFormat;
 
             /**
+             * Gets the attribute type.
+             * @returns the string "integer" or "decimal" or "double"
+             */
+            getAttributeType(): "integer" | "decimal" | "double";
+
+            /**
              * Gets the maximum value allowed.
              * @returns The maximum value allowed.
              */
@@ -2790,6 +2796,12 @@ declare namespace Xrm {
             getMaxLength(): number;
 
             /**
+             * Gets the attribute type.
+             * @returns the string "string"
+             */
+            getAttributeType(): "string";
+
+            /**
              * Sets the value.
              * @param value The value.
              * @remarks A String field with the {@link Attribute.getFormat|email} format enforces email
@@ -2831,7 +2843,7 @@ declare namespace Xrm {
             controls: Collection.ItemCollection<Controls.BooleanControl>;
 
             /**
-             * Gets the attribute format.
+             * Gets the attribute type.
              * @returns the string "boolean"
              */
             getAttributeType(): "boolean";
@@ -2856,6 +2868,12 @@ declare namespace Xrm {
              * @see {@link https://learn.microsoft.com/en-us/power-apps/developer/model-driven-apps/clientapi/reference/collections External Link: Collections (Client API reference)}
              */
             controls: Collection.ItemCollection<Controls.DateControl>;
+
+            /**
+             * Gets the attribute type.
+             * @returns the string "datetime"
+             */
+            getAttributeType(): "datetime";
         }
 
         /**
@@ -2869,6 +2887,12 @@ declare namespace Xrm {
              * Values returned are: language, timezone
              */
             getFormat(): OptionSetAttributeFormat;
+
+            /**
+             * Gets the attribute type.
+             * @returns the string "optionset"
+             */
+            getAttributeType(): "optionset";
 
             /**
              * Gets the option matching a value.
@@ -2946,6 +2970,12 @@ declare namespace Xrm {
             getOption(label: string): OptionSetValue;
 
             /**
+             * Gets the attribute type.
+             * @returns the string "multiselectoptionset"
+             */
+            getAttributeType(): "multiselectoptionset";
+
+            /**
              * Gets all of the options.
              * @returns An array of options.
              */
@@ -2991,6 +3021,12 @@ declare namespace Xrm {
              * @returns true the attribute is a PartyList, otherwise false.
              */
             getIsPartyList(): boolean;
+
+            /**
+             * Gets the attribute type.
+             * @returns the string "lookup"
+             */
+            getAttributeType(): "lookup";
 
             /**
              * A collection of all the controls on the form that interface with this attribute.
