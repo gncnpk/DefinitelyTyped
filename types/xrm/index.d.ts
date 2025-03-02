@@ -1152,7 +1152,9 @@ declare namespace Xrm {
          * @param attributeNameOrIndex Name of the attribute.
          * @returns The attribute or null if attribute does not exist.
          */
-        getAttribute<T extends Attributes.SpecificAttributeTypes = Attributes.SpecificAttributeTypes>(attributeNameOrIndex: string | number): T | null;
+        getAttribute<T extends Attributes.SpecificAttributeTypes = Attributes.SpecificAttributeTypes>(
+            attributeNameOrIndex: string | number,
+        ): T | null;
 
         /**
          * Gets a collection of attributes using a delegate function or gets all attributes if delegateFunction is not provided.
@@ -1170,7 +1172,9 @@ declare namespace Xrm {
          * @param controlNameOrIndex Name of the control or the control index.
          * @returns The control.
          */
-        getControl<T extends Controls.SpecificControls = Controls.SpecificControls>(controlNameOrIndex: string | number): T | null;
+        getControl<T extends Controls.SpecificControls = Controls.SpecificControls>(
+            controlNameOrIndex: string | number,
+        ): T | null;
 
         /**
          * Gets a collection of controls using a delegate function or gets all controls if delegateFunction is not provided.
@@ -2574,7 +2578,14 @@ declare namespace Xrm {
             | OptionSetAttributeFormat
             | StringAttributeFormat;
         type SpecificAttributeValues = string | number | number[] | Date | boolean | LookupValue[] | OptionSetValue;
-        type SpecificAttributeTypes = OptionSetAttribute | LookupAttribute | StringAttribute | NumberAttribute | DateAttribute | BooleanAttribute | MultiSelectOptionSetAttribute;
+        type SpecificAttributeTypes =
+            | OptionSetAttribute
+            | LookupAttribute
+            | StringAttribute
+            | NumberAttribute
+            | DateAttribute
+            | BooleanAttribute
+            | MultiSelectOptionSetAttribute;
         /**
          * Interface for an Entity attribute.
          */
@@ -3028,7 +3039,6 @@ declare namespace Xrm {
      * @see {@link https://learn.microsoft.com/en-us/power-apps/developer/model-driven-apps/clientapi/reference/collections External Link: Collections (Client API reference)}
      */
     namespace Controls {
-
         /**
          * Control types for {@link Controls.Control.getControlType Controls.Control.getControlType()}.
          * @see {@link XrmEnum.StandardControlType}
@@ -3045,7 +3055,19 @@ declare namespace Xrm {
             | "kbsearch"
             | "timelinewall"
             | "quickform";
-        type SpecificControls =  BooleanControl |KbSearchControl | MultiSelectOptionSetControl | DateControl | GridControl | IframeControl | LookupControl | NumberControl | OptionSetControl | QuickFormControl| StringControl | TimelineWall;
+        type SpecificControls =
+            | BooleanControl
+            | KbSearchControl
+            | MultiSelectOptionSetControl
+            | DateControl
+            | GridControl
+            | IframeControl
+            | LookupControl
+            | NumberControl
+            | OptionSetControl
+            | QuickFormControl
+            | StringControl
+            | TimelineWall;
         /**
          * Interface for UI elements with labels.
          */
@@ -3667,7 +3689,7 @@ declare namespace Xrm {
              * @returns The string "subgrid".
              */
             getControlType(): "subgrid";
-            
+
             /**
              * Gets the logical name of the table data displayed in the grid.
              * @returns The logical name of the table data displayed in the grid.
@@ -3909,7 +3931,7 @@ declare namespace Xrm {
              * @remarks Unavailable for Microsoft Dynamics CRM for tablets.
              */
             getInitialUrl(): string;
-            
+
             /**
              * Gets the control type.
              * @returns The string "iframe".

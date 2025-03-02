@@ -190,7 +190,7 @@ if (attribute !== null) {
     attribute.setRequiredLevel(requirementLevel);
     attribute.setRequiredLevel(requirementLevelString); // Works if the string is a const
 
-    //const isMultiSelect = attribute.getAttributeType() === "multiselectoptionset";
+    // const isMultiSelect = attribute.getAttributeType() === "multiselectoptionset";
 }
 /// Demonstrate v8.2 quick form controls
 
@@ -581,8 +581,8 @@ function booleanAttributeControls(formContext: Xrm.FormContext) {
     const booleanValue: boolean | null = booleanAttribute.getValue();
     // @ts-expect-error
     const notString: string = booleanAttribute.getValue();
-    
-    let booleanAttributeControl = booleanAttribute.controls.get(0)
+
+    let booleanAttributeControl = booleanAttribute.controls.get(0);
 
     if (booleanAttributeControl === null || booleanAttributeControl === undefined) {
         return;
