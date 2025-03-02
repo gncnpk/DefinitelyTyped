@@ -2580,11 +2580,12 @@ declare namespace Xrm {
             | IntegerAttributeFormat
             | OptionSetAttributeFormat
             | StringAttributeFormat;
-
+        type SpecificAttributeValues = string | number | number[] | Date | boolean | LookupValue[] | OptionSetValue;
+        type SpecificAttributeTypes = OptionSetAttribute | LookupAttribute | StringAttribute | NumberAttribute | DateAttribute | BooleanAttribute | MultiSelectOptionSetAttribute;
         /**
          * Interface for an Entity attribute.
          */
-        interface Attribute<T = unknown> {
+        interface Attribute<T = SpecificAttributeValues | null> {
             /**
              * Adds a handler to be called when the attribute's value is changed.
              * @param handler The function reference.
@@ -3380,19 +3381,6 @@ declare namespace Xrm {
              *    For a PCF control this is of the pattern <controlname>.fieldControl.<outputname>, e.g. telephone1.fieldControl.isValid
              */
             getOutputs(): { [index: string]: FieldControlOutput };
-
-            /**
-             * Gets the control's bound attribute.
-             * @template T An Attribute type.
-             * @returns The attribute.
-             */
-            getAttribute<T extends Attributes.Attribute>(): T;
-
-            /**
-             * Gets the control's bound attribute.
-             * @returns The attribute.
-             */
-            getAttribute(): Attributes.Attribute;
         }
 
         /**
