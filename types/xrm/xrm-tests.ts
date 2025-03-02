@@ -706,10 +706,10 @@ function testControlTypeReturn(formContext: Xrm.FormContext) {
     if (attributeControl === null) {
         return;
     }
-    // $ExpectType "lookup"
+    
     let attributeControlType = attributeControl.getControlType();
-    // @ts-expect-error
-    if (attributeControlType === "boolean") {
+    if (attributeControlType === "lookup") {
+        console.log(attributeControl.getAttribute())
         let value = attribute.getValue();
     }
 }
