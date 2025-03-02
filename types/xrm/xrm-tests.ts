@@ -194,8 +194,8 @@ if (attribute !== null) {
 }
 /// Demonstrate v8.2 quick form controls
 
-const quickForm = formContext.ui.quickForms.get(0);
-if (quickForm !== null) {
+const quickForm = formContext.ui.quickForms?.get(0);
+if (quickForm !== null && quickForm !== undefined) {
     quickForm.getControlType(); // == "quickform"
     quickForm.getName();
     quickForm.getParent();
@@ -575,20 +575,25 @@ function booleanAttributeControls(formContext: Xrm.FormContext) {
     let booleanAttribute = formContext.getAttribute<Xrm.Attributes.BooleanAttribute>(
         "prefx_myattribute",
     );
-    if (booleanAttribute === null) {
+    if (booleanAttribute === null || booleanAttribute === undefined) {
         return;
     }
     const booleanValue: boolean | null = booleanAttribute.getValue();
     // @ts-expect-error
     const notString: string = booleanAttribute.getValue();
+    
+    let booleanAttributeControl = booleanAttribute.controls.get(0)
 
-    booleanAttribute = booleanAttribute.controls.get(0).getAttribute();
+    if (booleanAttributeControl === null || booleanAttributeControl === undefined) {
+        return;
+    }
+    booleanAttribute = booleanAttributeControl.getAttribute();
 
     booleanAttribute.controls.forEach((c: Xrm.Controls.BooleanControl) => c.setDisabled(true));
 
-    booleanAttribute.controls.get(0).getAttribute().getAttributeType() === "boolean";
+    booleanAttributeControl.getAttribute().getAttributeType() === "boolean";
     // @ts-expect-error
-    booleanAttribute.controls.get(0).getAttribute().getAttributeType() === "optionset";
+    booleanAttributeControl.getAttribute().getAttributeType() === "optionset";
 }
 
 // Demonstrate add and remove methods for formContext.data.process
@@ -676,5 +681,16 @@ function ActionOnPostsave(context: Xrm.Events.PostSaveEventContext) {
         let id = args.getEntityReference().id;
     } else {
         console.log(args.getSaveErrorInfo());
+    }
+}
+
+function testAttributeTypeReturn(formContext: Xrm.FormContext) {
+    let attribute = formContext.getAttribute("name");
+    if (attribute === null) {
+        return;
+    }
+    let attributeType = attribute.getAttributeType();
+    if (attributeType === "boolean") {
+        let value = attribute.getValue();
     }
 }
