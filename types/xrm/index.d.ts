@@ -3046,15 +3046,18 @@ declare namespace Xrm {
         type ControlType =
             | "standard"
             | "iframe"
-            | "lookup"
-            | "optionset"
-            | "subgrid"
-            | "webresource"
-            | "notes"
-            | "timercontrol"
             | "kbsearch"
+            | "lookup"
+            | "choices"
+            | "notes"
+            | "choice"
+            | "quickform"
+            | "formcomponent"
+            | "subgrid"
+            | "timercontrol"
             | "timelinewall"
-            | "quickform";
+            | "webresource"
+            | `${string}.${string}`;
         type SpecificControls =
             | BooleanControl
             | KbSearchControl
@@ -3294,7 +3297,7 @@ declare namespace Xrm {
              * * customcontrol: <namespace>.<name> (A custom control for mobile phone and tablet clients).
              * * customsubgrid: <namespace>.<name> (A custom dataset control for mobile phone and tablet clients).
              */
-            getControlType(): ControlType | string;
+            getControlType(): ControlType;
 
             /**
              * Gets the name of the control on the form.
@@ -3438,6 +3441,12 @@ declare namespace Xrm {
              * @returns The attribute.
              */
             getAttribute(): Attributes.BooleanAttribute;
+
+            /**
+             * Gets the control type.
+             * @returns The string "standard".
+             */
+            getControlType(): "standard";
         }
 
         /**
@@ -3450,6 +3459,12 @@ declare namespace Xrm {
              * @returns The attribute.
              */
             getAttribute(): Attributes.StringAttribute;
+            
+            /**
+             * Gets the control type.
+             * @returns The string "standard".
+             */
+            getControlType(): "standard";
         }
 
         /**
@@ -3462,6 +3477,12 @@ declare namespace Xrm {
              * @returns The attribute.
              */
             getAttribute(): Attributes.NumberAttribute;
+
+            /**
+             * Gets the control type.
+             * @returns The string "standard".
+             */
+            getControlType(): "standard";
         }
 
         /**
@@ -3486,6 +3507,12 @@ declare namespace Xrm {
              * @param showTimeValue true to show, false to hide the time value.
              */
             setShowTime(showTimeValue: boolean): void;
+
+            /**
+             * Gets the control type.
+             * @returns The string "standard".
+             */
+            getControlType(): "standard";
         }
 
         /**
@@ -3617,7 +3644,7 @@ declare namespace Xrm {
              * Gets the control type.
              * @returns The string "optionset".
              */
-            getControlType(): "optionset";
+            getControlType(): "choice";
 
             /**
              * Gets the control's bound attribute.
@@ -3664,6 +3691,12 @@ declare namespace Xrm {
              * @param value The value.
              */
             removeOption(value: number): void;
+
+            /**
+             * Gets the control type.
+             * @returns The string "choices".
+             */
+            getControlType(): "choices";
         }
 
         /**
@@ -4216,6 +4249,12 @@ declare namespace Xrm {
              * Refreshes the data displayed in a timelinewall and timer control.
              */
             refresh(): void;
+
+            /**
+             * Gets the control type.
+             * @returns The string "timelinewall".
+             */
+            getControlType(): "timelinewall";
         }
 
         /**
