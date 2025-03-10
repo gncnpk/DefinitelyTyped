@@ -698,18 +698,18 @@ function testAttributeTypeReturn(formContext: Xrm.FormContext) {
 }
 
 function testControlTypeReturn(formContext: Xrm.FormContext) {
-    let attribute: null | Xrm.Attributes.LookupAttribute = formContext.getAttribute("name");
+    let attribute= formContext.getAttribute("name");
     if (attribute === null) {
         return;
     }
-    let attributeControl = attribute.controls.get(0);
+    let attributeControl= attribute.controls.get(0);
     if (attributeControl === null) {
         return;
     }
     
     let attributeControlType = attributeControl.getControlType();
     if (attributeControlType === "lookup") {
-        console.log(attributeControl.getAttribute())
+        attribute = attributeControl.getAttribute()
         let value = attribute.getValue();
     }
 }

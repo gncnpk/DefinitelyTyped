@@ -2589,7 +2589,7 @@ declare namespace Xrm {
         /**
          * Interface for an Entity attribute.
          */
-        interface Attribute<T = SpecificAttributeValues | null> {
+        interface Attribute<T = SpecificAttributeValues> {
             /**
              * Adds a handler to be called when the attribute's value is changed.
              * @param handler The function reference.
@@ -2704,7 +2704,7 @@ declare namespace Xrm {
 
             /**
              * Gets the value.
-             * @returns The value.
+             * @returns The value or null if there is no value.
              */
             getValue(): T | null;
 
@@ -2819,7 +2819,7 @@ declare namespace Xrm {
          * Common interface for enumeration attributes (MultiOptionSet, OptionSet and Boolean).
          * @see {@link Attribute}
          */
-        interface EnumAttribute<T extends number[] | number | boolean> extends Attribute<T> {
+        interface EnumAttribute<T extends number[] | number | boolean | null> extends Attribute<T> {
             /**
              * Gets the initial value of the attribute.
              * @returns The initial value.
@@ -2845,6 +2845,12 @@ declare namespace Xrm {
              * @returns the string "boolean"
              */
             getAttributeType(): "boolean";
+
+            /**
+             * Gets the value.
+             * @returns The value or null if there is no value.
+             */
+            getValue(): boolean | null;
         }
 
         /**
@@ -2872,13 +2878,19 @@ declare namespace Xrm {
              * @returns the string "datetime"
              */
             getAttributeType(): "datetime";
+
+            /**
+             * Gets the value.
+             * @returns The value or null if there is no value.
+             */
+            getValue(): Date | null;
         }
 
         /**
          * Interface an OptionSet attribute.
          * @see {@link EnumAttribute}
          */
-        interface OptionSetAttribute<T extends number = number> extends EnumAttribute<T> {
+        interface OptionSetAttribute extends EnumAttribute<number> {
             /**
              * Gets the attribute format.
              * @returns The format of the attribute.
@@ -2933,6 +2945,12 @@ declare namespace Xrm {
              *              with this method.
              */
             setValue(value: number | null): void;
+
+            /**
+             * Gets the value.
+             * @returns The value or null if there is no value.
+             */
+            getValue(): number;
 
             /**
              * A collection of all the controls on the form that interface with this attribute.
@@ -2992,6 +3010,12 @@ declare namespace Xrm {
             getText(): string[];
 
             /**
+             * Gets the value.
+             * @returns The value or null if there is no value.
+             */
+            getValue(): number[] | null;
+
+            /**
              * Sets the value.
              * @param value The value.
              * @remarks     The getOptions() method returns option values as strings. You must use parseInt
@@ -3031,6 +3055,12 @@ declare namespace Xrm {
              * @see {@link https://learn.microsoft.com/en-us/power-apps/developer/model-driven-apps/clientapi/reference/collections External Link: Collections (Client API reference)}
              */
             controls: Collection.ItemCollection<Controls.LookupControl>;
+
+            /**
+             * Gets the value.
+             * @returns The value or null if there is no value.
+             */
+            getValue(): LookupValue[] | null;
         }
     }
 
@@ -3395,6 +3425,8 @@ declare namespace Xrm {
              *    For a PCF control this is of the pattern <controlname>.fieldControl.<outputname>, e.g. telephone1.fieldControl.isValid
              */
             getOutputs(): { [index: string]: FieldControlOutput };
+
+            getAttribute(): Attributes.Attribute;
         }
 
         /**
