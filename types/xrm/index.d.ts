@@ -2577,7 +2577,7 @@ declare namespace Xrm {
             | IntegerAttributeFormat
             | OptionSetAttributeFormat
             | StringAttributeFormat;
-        type SpecificAttributeValues = string | number | number[] | Date | boolean | LookupValue[] | OptionSetValue;
+        type SpecificAttributeValues = string | number | number[] | Date | boolean | LookupValue[] | OptionSetValue | null;
         type SpecificAttributeTypes =
             | OptionSetAttribute
             | LookupAttribute
@@ -2589,7 +2589,7 @@ declare namespace Xrm {
         /**
          * Interface for an Entity attribute.
          */
-        interface Attribute<T = SpecificAttributeValues> {
+        interface Attribute<T extends SpecificAttributeValues = SpecificAttributeValues> {
             /**
              * Adds a handler to be called when the attribute's value is changed.
              * @param handler The function reference.
@@ -3674,7 +3674,7 @@ declare namespace Xrm {
 
             /**
              * Gets the control type.
-             * @returns The string "optionset".
+             * @returns The string "choice".
              */
             getControlType(): "choice";
 
@@ -4196,15 +4196,7 @@ declare namespace Xrm {
              * @returns The control.
              * @remarks Constituent controls in a quick view control are read only.
              */
-            getControl<T extends Control>(controlNameOrIndex: string | number): T | null;
-
-            /**
-             * Gets the constituent control in a quick view control by name or index.
-             * @param controlNameOrIndex Name or index of the control.
-             * @returns The control.
-             * @remarks Constituent controls in a quick view control are read only.
-             */
-            getControl(controlNameOrIndex: string | number): Control | null;
+            getControl<T extends Control = Control>(controlNameOrIndex: string | number): T | null;
 
             /**
              * Gets the constituent controls in a quick view control.
