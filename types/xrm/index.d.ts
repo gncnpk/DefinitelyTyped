@@ -3078,9 +3078,9 @@ declare namespace Xrm {
             | "iframe"
             | "kbsearch"
             | "lookup"
-            | "choices"
+            | "multiselectoptionset"
             | "notes"
-            | "choice"
+            | "optionset"
             | "quickform"
             | "formcomponent"
             | "subgrid"
@@ -3674,9 +3674,9 @@ declare namespace Xrm {
 
             /**
              * Gets the control type.
-             * @returns The string "choice".
+             * @returns The string "optionset".
              */
-            getControlType(): "choice";
+            getControlType(): "optionset";
 
             /**
              * Gets the control's bound attribute.
@@ -3726,9 +3726,9 @@ declare namespace Xrm {
 
             /**
              * Gets the control type.
-             * @returns The string "choices".
+             * @returns The string "multiselectoptionset".
              */
-            getControlType(): "choices";
+            getControlType(): "multiselectoptionset";
         }
 
         /**

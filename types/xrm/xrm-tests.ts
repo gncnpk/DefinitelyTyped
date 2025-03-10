@@ -707,6 +707,5 @@ function testControlTypeReturn(formContext: Xrm.FormContext) {
         console.log(attribute)
         let attributeControl = attribute.controls.get(0);
         let value = attribute.getValue();
-        value.toLocaleString();
     }
 }
