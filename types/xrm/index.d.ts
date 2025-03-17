@@ -2898,7 +2898,7 @@ declare namespace Xrm {
          * Interface an OptionSet attribute.
          * @see {@link EnumAttribute}
          */
-        interface OptionSetAttribute extends EnumAttribute<number> {
+        interface OptionSetAttribute<T extends number = number> extends EnumAttribute<T> {
             /**
              * Gets the attribute format.
              * @returns The format of the attribute.
@@ -2951,13 +2951,13 @@ declare namespace Xrm {
              *              OptionSet attribute. Attributes on Quick Create Forms will not save values set
              *              with this method.
              */
-            setValue(value: number | null): void;
+            setValue(value: T | null): void;
 
             /**
              * Gets the value.
              * @returns The value or null if there is no value.
              */
-            getValue(): number | null;
+            getValue(): T | null;
 
             /**
              * A collection of all the controls on the form that interface with this attribute.
@@ -3020,7 +3020,7 @@ declare namespace Xrm {
              * Gets the value.
              * @returns The value or null if there is no value.
              */
-            getValue(): number[] | null;
+            getValue(): T[] | null;
 
             /**
              * Sets the value.
@@ -3030,7 +3030,7 @@ declare namespace Xrm {
              *              OptionSet attribute. Attributes on Quick Create Forms will not save values set
              *              with this method.
              */
-            setValue(value: number[] | null): void;
+            setValue(value: T[] | null): void;
 
             /**
              * A collection of all the controls on the form that interface with this attribute.
