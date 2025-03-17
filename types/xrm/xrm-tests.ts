@@ -702,15 +702,15 @@ function testControlTypeReturn(formContext: Xrm.FormContext) {
     if (attribute === null) {
         return;
     }
-    let control = attribute.controls.get(0)
-    if(control === null) {
+    let control = attribute.controls.get(0);
+    if (control === null) {
         return;
     }
     // $ExpectType "standard"
     let controlType = control.getControlType();
     // @ts-expect-error
     if (controlType === "lookup") {
-        console.log(attribute)
+        console.log(attribute);
         let attributeControl = attribute.controls.get(0);
         let value = attribute.getValue();
     }

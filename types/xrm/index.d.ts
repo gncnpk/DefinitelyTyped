@@ -2478,7 +2478,7 @@ declare namespace Xrm {
         /**
          * The name
          */
-        name?: string | undefined;
+        name: string;
 
         /**
          * Type of the entity.
@@ -2577,7 +2577,15 @@ declare namespace Xrm {
             | IntegerAttributeFormat
             | OptionSetAttributeFormat
             | StringAttributeFormat;
-        type SpecificAttributeValues = string | number | number[] | Date | boolean | LookupValue[] | OptionSetValue | null;
+        type SpecificAttributeValues =
+            | string
+            | number
+            | number[]
+            | Date
+            | boolean
+            | LookupValue[]
+            | OptionSetValue
+            | null;
         type SpecificAttributeTypes =
             | OptionSetAttribute
             | LookupAttribute
@@ -2909,14 +2917,14 @@ declare namespace Xrm {
              * @param value The enumeration value of the option desired.
              * @returns The option.
              */
-            getOption(value: number): OptionSetValue;
+            getOption(value: number): OptionSetValue | null;
 
             /**
              * Gets the option matching a label.
              * @param label The label of the option desired.
              * @returns The option.
              */
-            getOption(label: string): OptionSetValue;
+            getOption(label: string): OptionSetValue | null;
 
             /**
              * Gets all of the options.
@@ -2928,13 +2936,12 @@ declare namespace Xrm {
              * Gets selected option.
              * @returns The selected option.
              */
-            getSelectedOption(): OptionSetValue;
-
+            getSelectedOption(): OptionSetValue | null;
             /**
              * Gets the label of the currently selected option.
              * @returns The current value's label.
              */
-            getText(): string;
+            getText(): string | null;
 
             /**
              * Sets the value.
@@ -2950,7 +2957,7 @@ declare namespace Xrm {
              * Gets the value.
              * @returns The value or null if there is no value.
              */
-            getValue(): number;
+            getValue(): number | null;
 
             /**
              * A collection of all the controls on the form that interface with this attribute.
@@ -4002,6 +4009,12 @@ declare namespace Xrm {
              * @returns The string "iframe".
              */
             getControlType(): "iframe";
+
+            /**
+             * Sets the URL of the IFrame.
+             * @param url The URL.
+             */
+            setSrc(url: string): void;
         }
 
         /**
