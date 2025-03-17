@@ -2478,7 +2478,7 @@ declare namespace Xrm {
         /**
          * The name
          */
-        name: string;
+        name?: string;
 
         /**
          * Type of the entity.
