@@ -1152,7 +1152,7 @@ declare namespace Xrm {
          * @param attributeNameOrIndex Name of the attribute.
          * @returns The attribute or null if attribute does not exist.
          */
-        getAttribute<T extends Attributes.SpecificAttributeTypes = Attributes.SpecificAttributeTypes>(
+        getAttribute<T = Attributes.SpecificAttributeTypes>(
             attributeNameOrIndex: string | number,
         ): T | null;
 
@@ -1172,7 +1172,7 @@ declare namespace Xrm {
          * @param controlNameOrIndex Name of the control or the control index.
          * @returns The control.
          */
-        getControl<T extends Controls.SpecificControls = Controls.SpecificControls>(
+        getControl<T = Controls.SpecificControls>(
             controlNameOrIndex: string | number,
         ): T | null;
 
@@ -2597,7 +2597,7 @@ declare namespace Xrm {
         /**
          * Interface for an Entity attribute.
          */
-        interface Attribute<T extends SpecificAttributeValues = SpecificAttributeValues> {
+        interface Attribute<T = SpecificAttributeValues> {
             /**
              * Adds a handler to be called when the attribute's value is changed.
              * @param handler The function reference.
