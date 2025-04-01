@@ -1152,7 +1152,7 @@ declare namespace Xrm {
          * @param attributeNameOrIndex Name of the attribute.
          * @returns The attribute or null if attribute does not exist.
          */
-        getAttribute<T = Attributes.SpecificAttributeTypes>(
+        getAttribute<T extends Attributes.Attribute = Attributes.SpecificAttributeTypes>(
             attributeNameOrIndex: string | number,
         ): T | null;
 
@@ -1172,7 +1172,7 @@ declare namespace Xrm {
          * @param controlNameOrIndex Name of the control or the control index.
          * @returns The control.
          */
-        getControl<T = Controls.SpecificControls>(
+        getControl<T extends Controls.Control = Controls.SpecificControls>(
             controlNameOrIndex: string | number,
         ): T | null;
 
@@ -4202,6 +4202,23 @@ declare namespace Xrm {
                 UiCanGetVisibleElement,
                 UiCanSetVisibleElement
         {
+            /** Gets the constituent attribute in a quick view control by name or index
+             * @param T A Attribute type
+             * @param attributeNameOrIndex Name or index of the attribute.
+             * @returns The attribute.
+             * @remarks Constituent attributes in a quick view control are read only.
+             */
+            getAttribute<T extends Attributes.Attribute = Attributes.SpecificAttributeTypes>(
+                attributeNameOrIndex: string | number,
+            ): T | null;
+
+            /**
+             * Gets the constituent attributes in a quick view control.
+             * @returns An array of attributes.
+             * @remarks Constituent attributes in a quick view control are read only.
+             */
+            getAttribute(): Collection.ItemCollection<Attributes.Attribute> | null;
+
             /**
              * Gets the constituent control in a quick view control by name or index.
              * @param T A Control type
@@ -4216,7 +4233,7 @@ declare namespace Xrm {
              * @returns An array of controls.
              * @remarks Constituent controls in a quick view control are read only.
              */
-            getControl(): Control[] | null;
+            getControl(): Collection.ItemCollection<Control> | null;
 
             /**
              * Gets the controls type.
